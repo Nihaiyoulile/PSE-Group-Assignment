@@ -20,5 +20,5 @@ and promoting academic collaboration and discussions.
 
 Key Features:
 Student Module: Search Courses, View Resources, Upload Questions, Bookmark Resources and Report Content
-Lecturer Module: Upload Courses, Upload Teaching Material and Answer Questions
+Lecturer Module: Upload Courses, Upload Teaching Material，Answer Questions and upload pictures
 Administrator Module: Log in, Manage Users, Approve Lecture, Remove Content and Approve Courses
