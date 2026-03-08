@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusConnect</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--font:'Courier New',Courier,monospace;--ink:#000;--ink2:#666;--ink3:#999;--bg:#fff;--border:1px solid #000;--border2:2px solid #000;--dash:1px dashed #ccc}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh}
+
+/*Pages*/
+.page{display:none;min-height:100vh;flex-direction:column}
+.page.active{display:flex}
+
+/*Header*/
+.header{border-bottom:var(--border2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.header-left{display:flex;align-items:center;gap:14px}
+.header-logo{font-size:16px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.header-role{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--ink3);border:var(--border);padding:3px 10px}
+.header-right{display:flex;align-items:center;gap:12px}
+.header-user{font-size:12px;color:var(--ink2)}
+
+/*Buttons*/
+.btn{font-family:var(--font);font-weight:700;font-size:12px;padding:10px 20px;border:var(--border);cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:.15s;display:inline-flex;align-items:center;gap:6px;justify-content:center}
+.btn-primary{background:#000;color:#fff;width:100%}.btn-primary:hover{background:#333}
+.btn-outline{background:#fff;color:#000}.btn-outline:hover{background:#f5f5f5}
+.btn-danger{background:#000;color:#fff;font-size:11px;padding:6px 14px}.btn-danger:hover{background:#333}
+.btn-ghost{background:transparent;border:none;color:var(--ink2);font-size:11px;padding:6px 10px;text-decoration:underline;text-underline-offset:2px;font-family:var(--font);font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}.btn-ghost:hover{color:#000}
+.btn-sm{font-size:11px;padding:6px 14px}
+.btn-full{width:100%}
+.btn-logout{font-family:var(--font);font-size:11px;font-weight:700;padding:5px 14px;border:var(--border);background:#fff;color:#000;cursor:pointer;letter-spacing:1px;text-transform:uppercase}.btn-logout:hover{background:#000;color:#fff}
+.link-btn{font-family:var(--font);background:none;border:none;font-size:12px;font-weight:700;color:#000;cursor:pointer;text-decoration:underline;text-underline-offset:3px;letter-spacing:.5px}.link-btn:hover{color:#555}
+
+/*Layout*/
+.main-content{flex:1;padding:24px;max-width:920px;margin:0 auto;width:100%}
+.section-title{font-size:18px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.section-sub{font-size:11px;color:var(--ink3);margin-bottom:20px;font-style:italic}
+.sub-title{font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.divider{border:none;border-top:var(--dash);margin:24px 0}
+.annotation{font-size:10px;color:#aaa;font-style:italic;margin-top:4px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+
+/*Forms*/
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--ink2);margin-bottom:5px}
+.form-input{width:100%;padding:10px 12px;font-size:13px;font-family:var(--font);border:var(--border);background:#fff;color:#000;outline:none}
+.form-input:focus{border-width:2px}.form-input::placeholder{color:#bbb}
+textarea.form-input{resize:vertical;min-height:100px}
+.form-select{width:100%;padding:10px 12px;font-size:13px;font-family:var(--font);border:var(--border);background:#fff;color:#000;outline:none;cursor:pointer}
+.form-error{font-size:11px;color:#c00;margin-top:6px;display:none}
+
+/*Cards*/
+.card{border:var(--border);padding:16px;transition:.15s}
+.card-click{cursor:pointer}.card-click:hover{border-width:2px;padding:15px}
+.card-title{font-weight:700;font-size:13px;line-height:1.4}
+.card-desc{font-size:12px;color:var(--ink2);margin-top:4px;line-height:1.5}
+.card-meta{font-size:10px;color:var(--ink3);margin-top:8px;display:flex;gap:10px;align-items:center}
+.card-footer{display:flex;gap:6px;margin-top:12px}
+
+/*Badges*/
+.badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:2px 8px;border:var(--border)}
+.badge-filled{background:#000;color:#fff}.badge-outline{background:#fff;color:#000}
+
+/*Stats*/
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:24px}
+.stat-card{border:var(--border);padding:14px 16px;text-align:center}
+.stat-label{font-size:9px;color:var(--ink3);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.stat-value{font-size:28px;font-weight:700}
+
+/*Tables*/
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;padding:8px 12px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--ink3);border-bottom:var(--border2)}
+td{padding:10px 12px;border-bottom:var(--dash);vertical-align:middle}
+
+/*FAB*/
+.fab{position:fixed;bottom:24px;right:24px;z-index:100;width:50px;height:50px;border-radius:50%;background:#000;color:#fff;border:var(--border2);font-size:22px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+.fab:hover{transform:scale(1.08)}
+
+/*Login*/
+.login-wrapper{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.login-card{width:100%;max-width:400px;border:var(--border2);padding:36px 32px}
+.login-brand{text-align:center;margin-bottom:28px}
+.login-brand h1{font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.login-brand p{font-size:11px;color:var(--ink3);letter-spacing:1px}
+.credentials-box{border:var(--dash);padding:14px;margin-top:20px}
+.credentials-box h3{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--ink3);margin-bottom:10px}
+.cred-row{font-size:11px;margin-bottom:6px;line-height:1.6}
+.cred-label{color:var(--ink3)}
+.cred-val{font-weight:700}
+
+/*Modal*/
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.3);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border:var(--border2);width:100%;max-width:440px;padding:28px}
+.modal-title{font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.modal-desc{font-size:12px;color:var(--ink2);margin-bottom:18px;line-height:1.5}
+.modal-actions{display:flex;gap:8px;margin-top:20px}
+.modal-actions .btn{flex:1}
+
+/*Tabs*/
+.tabs{display:flex;border-bottom:var(--border2);margin-bottom:20px}
+.tab{font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 20px;border:none;background:none;cursor:pointer;color:var(--ink3);border-bottom:2px solid transparent;margin-bottom:-2px}
+.tab.active{color:#000;border-bottom-color:#000}
+.tab:hover{color:#000}
+
+/*Rating*/
+.stars{display:inline-flex;gap:2px;cursor:pointer;font-size:18px}
+.stars span{color:#ccc;transition:.1s}.stars span.filled{color:#000}.stars span:hover{color:#000}
+
+/*Toast*/
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:10px 24px;font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:1px;z-index:2000;display:none;text-transform:uppercase}
+.toast.show{display:block;animation:toastIn .3s ease}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+@media(max-width:600px){.main-content{padding:18px 14px}.grid-2{grid-template-columns:1fr}.header{padding:12px 14px}.login-card{padding:28px 20px}}
+</style>
+</head>
+<body>
+
+<!--Toast-->
+<div class="toast" id="toast"></div>
+
+
+<!-- LOGIN PAGE-->
+
+<div class="page active" id="page-login">
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="login-brand">
+        <h1>Campus Connect</h1>
+        <p>Sign in to continue</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" id="loginEmail" placeholder="user@campus.edu">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" id="loginPassword" placeholder="••••••••">
+      </div>
+      <div class="form-error" id="loginError">Invalid email or password. Please try again.</div>
+      <button class="btn btn-primary" onclick="handleLogin()" style="margin-top:6px">Login →</button>
+      <hr class="divider">
+      <button class="btn btn-outline btn-full" onclick="openModal('resetPwModal')">Reset Password</button>
+
+      <!-- Credentials -->
+      <div class="credentials-box">
+        <h3>Demo Accounts</h3>
+        <div class="cred-row">
+          <span class="cred-label">Student:</span> <span class="cred-val">student1@campus.edu</span> / <span class="cred-val">12345</span>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">Lecturer:</span> <span class="cred-val">lecturer1@campus.edu</span> / <span class="cred-val">12345</span>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">Admin:</span> <span class="cred-val">admin1@campus.edu</span> / <span class="cred-val">12345</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reset Password Modal -->
+<div class="modal-overlay" id="resetPwModal">
+  <div class="modal">
+    <div class="modal-title">Reset Password</div>
+    <div class="modal-desc">Enter your email to receive a password reset link.</div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input class="form-input" type="email" placeholder="user@campus.edu">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('resetPwModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal('resetPwModal');showToast('Reset link sent to your email')">Send Link</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- STUDENT DASHBOARD-->
+
+<div class="page" id="page-studentDash">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">Campus Connect</div>
+      <div class="header-role">Student</div>
+    </div>
+    <div class="header-right">
+      <span class="header-user" id="studentEmail"></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="section-title">Student Dashboard</div>
+    <div class="section-sub">Search courses, view resources, and ask questions</div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-label">Enrolled</div><div class="stat-value">4</div></div>
+      <div class="stat-card"><div class="stat-label">Questions</div><div class="stat-value">7</div></div>
+      <div class="stat-card"><div class="stat-label">Bookmarks</div><div class="stat-value">12</div></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(this,'studentCourses')">My Courses</button>
+      <button class="tab" onclick="switchTab(this,'studentQuestions')">My Questions</button>
+    </div>
+
+    <!-- Courses Tab -->
+    <div id="tab-studentCourses">
+      <div style="display:flex;gap:8px;margin-bottom:20px">
+        <input class="form-input" id="courseSearch" placeholder="Search courses..." oninput="filterCourses()">
+        <button class="btn btn-outline btn-sm" onclick="filterCourses()">Search</button>
+      </div>
+      <div class="grid-3" id="courseGrid"></div>
+    </div>
+
+    <!-- Questions Tab -->
+    <div id="tab-studentQuestions" style="display:none">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>Major</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>How to draw a sequence diagram?</strong></td><td>Software Engineering</td><td>Mar 5</td><td><span class="badge badge-filled">Answered</span></td></tr>
+            <tr><td><strong>Difference between include and extend?</strong></td><td>Software Engineering</td><td>Mar 6</td><td><span class="badge badge-outline">Pending</span></td></tr>
+            <tr><td><strong>What is 3NF?</strong></td><td>Database Systems</td><td>Mar 7</td><td><span class="badge badge-outline">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <button class="fab" onclick="nav('questionUpload')" title="Ask a Question">?</button>
+</div>
+
+
+
+<!-- QUESTION UPLOAD -->
+
+<div class="page" id="page-questionUpload">
+  <div class="header">
+    <div class="header-left">
+      <button class="link-btn" onclick="nav('studentDash')">← Back</button>
+      <div class="header-logo">Ask a Question</div>
+    </div>
+    <div class="header-right">
+      <span class="header-user" id="questionEmail"></span>
+    </div>
+  </div>
+  <div class="main-content" style="max-width:560px">
+    <div class="card" style="padding:24px">
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input class="form-input" id="qTitle" placeholder="e.g. How to draw a sequence diagram?">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Content</label>
+        <textarea class="form-input" id="qContent" placeholder="Describe your question in detail..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Major / Topic</label>
+        <select class="form-select" id="qMajor">
+          <option>Software Engineering</option>
+          <option>Database Systems</option>
+          <option>Computer Networks</option>
+          <option>Data Structures</option>
+        </select>
+      </div>
+      <hr class="divider">
+      <div style="margin-bottom:16px">
+        <button class="btn btn-outline btn-sm" onclick="document.getElementById('imgUpload').click()">+ Add Image</button>
+        <input type="file" id="imgUpload" accept="image/*" style="display:none" onchange="document.getElementById('imgName').textContent=this.files[0]?.name||''">
+        <span id="imgName" style="font-size:11px;color:var(--ink3);margin-left:8px"></span>
+      </div>
+      <button class="btn btn-primary" onclick="submitQuestion()">Submit Question</button>
+    </div>
+  </div>
+</div>
+
+<!-- Question Success Modal -->
+<div class="modal-overlay" id="questionSuccessModal">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">✓</div>
+    <div class="modal-title">Question Posted</div>
+    <div class="modal-desc">Your question has been submitted successfully.</div>
+    <button class="btn btn-primary" style="margin-top:8px" onclick="closeModal('questionSuccessModal');nav('studentDash')">← Back to Dashboard</button>
+  </div>
+</div>
+
+
+
+<!-- VIEW RESOURCES -->
+
+<div class="page" id="page-resourceView">
+  <div class="header">
+    <div class="header-left">
+      <button class="link-btn" onclick="nav('studentDash')">← Courses</button>
+      <div class="header-logo" id="resourceCourseName">Software Engineering</div>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-outline btn-sm" onclick="bookmarkResource()">☆ Bookmark</button>
+      <button class="btn btn-outline btn-sm" onclick="openModal('reportModal')">⚑ Report</button>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="section-title">Course Resources</div>
+    <div class="section-sub" id="resourceCourseMeta">Dr. Ahmad · 4 Credits</div>
+
+    <div class="grid-2" id="materialGrid"></div>
+
+    <hr class="divider">
+
+    <!-- Rate Course -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+      <span class="sub-title" style="margin-bottom:0">Rate this course:</span>
+      <div class="stars" id="ratingStars">
+        <span onclick="rateCourse(1)">★</span>
+        <span onclick="rateCourse(2)">★</span>
+        <span onclick="rateCourse(3)">★</span>
+        <span onclick="rateCourse(4)">★</span>
+        <span onclick="rateCourse(5)">★</span>
+      </div>
+      <span id="ratingText" style="font-size:11px;color:var(--ink3)"></span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="sub-title">Discussion</div>
+    <div class="section-sub">Questions related to this course</div>
+    <div id="courseQuestions"></div>
+  </div>
+</div>
+
+<!-- Report Modal -->
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <div class="modal-title">Report Content</div>
+    <div class="modal-desc">Flag this resource for admin review.</div>
+    <div class="form-group">
+      <label class="form-label">Reason</label>
+      <select class="form-select">
+        <option>Inappropriate content</option>
+        <option>Copyright violation</option>
+        <option>Incorrect information</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Details (Optional)</label>
+      <textarea class="form-input" placeholder="Additional details..." style="min-height:60px"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('reportModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal('reportModal');showToast('Report submitted')">Submit</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- LECTURER DASHBOARD -->
+
+<div class="page" id="page-lecturerDash">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">Campus Connect</div>
+      <div class="header-role">Lecturer</div>
+    </div>
+    <div class="header-right">
+      <span class="header-user" id="lecturerEmail"></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="section-title">Lecturer Dashboard</div>
+    <div class="section-sub">Manage courses, upload materials, answer questions</div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-label">Courses</div><div class="stat-value">2</div></div>
+      <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value" id="pendingCount">3</div></div>
+      <div class="stat-card"><div class="stat-label">Materials</div><div class="stat-value">14</div></div>
+      <div class="stat-card"><div class="stat-label">Experience</div><div class="stat-value">8yr</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(this,'lecCourses')">My Courses</button>
+      <button class="tab" onclick="switchTab(this,'lecQuestions')">Questions</button>
+    </div>
+
+    <!-- Courses Tab -->
+    <div id="tab-lecCourses">
+      <div style="text-align:right;margin-bottom:14px">
+        <button class="btn btn-outline btn-sm" onclick="openModal('uploadCourseModal')">+ New Course</button>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Software Engineering</div>
+          <div class="card-desc">4 Credits · 42 students</div>
+          <div class="card-footer">
+            <button class="btn btn-outline btn-sm" onclick="openModal('uploadMaterialModal')">Upload Material</button>
+            <button class="btn btn-ghost btn-sm">Edit</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Database Systems</div>
+          <div class="card-desc">3 Credits · 38 students</div>
+          <div class="card-footer">
+            <button class="btn btn-outline btn-sm" onclick="openModal('uploadMaterialModal')">Upload Material</button>
+            <button class="btn btn-ghost btn-sm">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Questions Tab -->
+    <div id="tab-lecQuestions" style="display:none">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>Course</th><th>Status</th><th></th></tr></thead>
+          <tbody id="lecQuestionBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Upload Course Modal -->
+<div class="modal-overlay" id="uploadCourseModal">
+  <div class="modal">
+    <div class="modal-title">Upload New Course</div>
+    <div class="form-group"><label class="form-label">Course Name</label><input class="form-input" placeholder="e.g. Computer Networks"></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-input" placeholder="Course description..." style="min-height:60px"></textarea></div>
+    <div class="form-group"><label class="form-label">Credits</label><input class="form-input" type="number" placeholder="3"></div>
+    <div class="form-group"><label class="form-label">Course Style</label><input class="form-input" placeholder="e.g. Lecture-based, Project-based"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('uploadCourseModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal('uploadCourseModal');showToast('Course created successfully')">Create</button>
+    </div>
+  </div>
+</div>
+
+<!-- Upload Material Modal -->
+<div class="modal-overlay" id="uploadMaterialModal">
+  <div class="modal">
+    <div class="modal-title">Upload Material</div>
+    <div class="form-group"><label class="form-label">File</label><input class="form-input" type="file"></div>
+    <div class="form-group"><label class="form-label">Title</label><input class="form-input" placeholder="e.g. Lecture 3 — UML Basics"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('uploadMaterialModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal('uploadMaterialModal');showToast('Material uploaded successfully')">Upload</button>
+    </div>
+  </div>
+</div>
+
+<!-- Answer Modal -->
+<div class="modal-overlay" id="answerModal">
+  <div class="modal">
+    <div class="modal-title">Answer Question</div>
+    <div class="modal-desc" id="answerModalQuestion"></div>
+    <div class="form-group">
+      <label class="form-label">Your Answer</label>
+      <textarea class="form-input" id="answerText" placeholder="Type your answer..."></textarea>
+    </div>
+    <div style="margin-bottom:10px">
+      <button class="btn btn-outline btn-sm" onclick="document.getElementById('answerImg').click()">+ Attach Image</button>
+      <input type="file" id="answerImg" accept="image/*" style="display:none">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('answerModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="submitAnswer()">Submit</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ADMIN PANEL -->
+
+<div class="page" id="page-adminPanel">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">Campus Connect</div>
+      <div class="header-role">Admin</div>
+    </div>
+    <div class="header-right">
+      <span class="header-user" id="adminEmail"></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="section-title">Admin Panel</div>
+    <div class="section-sub">Manage users, approve lecturers, moderate content</div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-label">Users</div><div class="stat-value">156</div></div>
+      <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value" id="adminPendingCount">2</div></div>
+      <div class="stat-card"><div class="stat-label">Reports</div><div class="stat-value" id="adminReportCount">3</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(this,'adminUsers')">User Management</button>
+      <button class="tab" onclick="switchTab(this,'adminModeration')">Content Moderation</button>
+    </div>
+
+    <!-- Users Tab -->
+    <div id="tab-adminUsers">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th></th></tr></thead>
+          <tbody id="adminUserBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Moderation Tab -->
+    <div id="tab-adminModeration" style="display:none">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Content</th><th>Reported By</th><th></th></tr></thead>
+          <tbody id="adminReportBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:36px;margin-bottom:6px">⚠</div>
+    <div class="modal-title">Confirm Removal</div>
+    <div class="modal-desc" id="deleteModalText">Are you sure? This cannot be undone.</div>
+    <div class="modal-actions" style="margin-top:18px">
+      <button class="btn btn-outline" onclick="closeModal('deleteModal')">Cancel</button>
+      <button class="btn btn-primary" id="deleteConfirmBtn">Confirm Remove</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ban User Modal -->
+<div class="modal-overlay" id="banModal">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:36px;margin-bottom:6px">⛔</div>
+    <div class="modal-title">Ban User</div>
+    <div class="modal-desc" id="banModalText">Are you sure you want to ban this user?</div>
+    <div class="modal-actions" style="margin-top:18px">
+      <button class="btn btn-outline" onclick="closeModal('banModal')">Cancel</button>
+      <button class="btn btn-primary" id="banConfirmBtn">Confirm Ban</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script>
+//Data
+const ACCOUNTS = {
+  'student1@campus.edu':  { password:'12345', role:'student',  name:'Student User' },
+  'lecturer1@campus.edu': { password:'12345', role:'lecturer', name:'Dr. Ahmad' },
+  'admin1@campus.edu':    { password:'12345', role:'admin',    name:'Admin' }
+};
+
+let currentUser = null;
+
+const courses = [
+  { id:1, name:"Software Engineering", desc:"SDLC, UML diagrams, Agile methodology", credits:4, lecturer:"Dr. Ahmad", style:"Lecture-based" },
+  { id:2, name:"Database Systems",     desc:"SQL, ER/EER modeling, normalization",    credits:3, lecturer:"Dr. Ahmad", style:"Lab-based" },
+  { id:3, name:"Computer Networks",    desc:"TCP/IP, routing, network security",      credits:3, lecturer:"Dr. Chen Wei", style:"Lecture-based" },
+  { id:4, name:"Data Structures",      desc:"Trees, graphs, sorting algorithms",      credits:4, lecturer:"Dr. Maria Lopez", style:"Project-based" },
+  { id:5, name:"Operating Systems",    desc:"Process scheduling, memory management",  credits:3, lecturer:"Dr. Chen Wei", style:"Lecture-based" },
+  { id:6, name:"Discrete Mathematics", desc:"Logic, proof techniques, set theory",    credits:3, lecturer:"Dr. Maria Lopez", style:"Tutorial-based" },
+];
+
+const materials = {
+  1: [
+    { id:1, title:"Lecture 1 — Introduction to SDLC", file:"PDF · 2.4 MB", date:"Feb 10" },
+    { id:2, title:"Lecture 2 — Requirements Engineering", file:"PDF · 3.1 MB", date:"Feb 17" },
+    { id:3, title:"Tutorial 6 — Sequence Diagrams", file:"PDF · 1.8 MB", date:"Mar 3" },
+    { id:4, title:"Tutorial 8 — Activity Diagrams", file:"PDF · 2.0 MB", date:"Mar 7" },
+  ],
+  2: [
+    { id:5, title:"Lecture 1 — ER Modeling", file:"PDF · 2.1 MB", date:"Feb 12" },
+    { id:6, title:"Lecture 2 — Normalization", file:"PDF · 1.9 MB", date:"Feb 19" },
+  ]
+};
+
+let questions = [
+  { id:1, title:"How to draw a sequence diagram?", content:"I'm confused about the lifelines and messages.", major:"Software Engineering", courseId:1, date:"Mar 5", status:"answered", author:"sarah@campus.edu" },
+  { id:2, title:"Difference between include and extend?", content:"When should I use include vs extend in use case diagrams?", major:"Software Engineering", courseId:1, date:"Mar 6", status:"pending", author:"raj@campus.edu" },
+  { id:3, title:"What is 3NF?", content:"Can someone explain third normal form with an example?", major:"Database Systems", courseId:2, date:"Mar 7", status:"pending", author:"student1@campus.edu" },
+  { id:4, title:"ERD vs EER diagram?", content:"What are the differences between ER and Enhanced ER diagrams?", major:"Database Systems", courseId:2, date:"Mar 8", status:"pending", author:"sarah@campus.edu" },
+];
+
+let users = [
+  { name:"Dr. Chen Wei",    email:"chen@campus.edu",  role:"Lecturer", status:"pending" },
+  { name:"Dr. Maria Lopez", email:"maria@campus.edu", role:"Lecturer", status:"pending" },
+  { name:"Ali bin Ahmad",   email:"ali@campus.edu",   role:"Lecturer", status:"active" },
+  { name:"Sarah Tan",       email:"sarah@campus.edu", role:"Student",  status:"active" },
+  { name:"Raj Kumar",       email:"raj@campus.edu",   role:"Student",  status:"active" },
+];
+
+let reports = [
+  { id:1, type:"Question", content:"Spam: Buy cheap textbooks", reporter:"sarah@campus.edu" },
+  { id:2, type:"Material", content:"Copyrighted PDF upload",    reporter:"ali@campus.edu" },
+  { id:3, type:"Question", content:"Offensive language in post", reporter:"raj@campus.edu" },
+];
+
+let currentCourseId = 1;
+let currentAnswerQId = null;
+
+//Navigation
+function nav(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+//Login
+function handleLogin() {
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pw = document.getElementById('loginPassword').value;
+  const err = document.getElementById('loginError');
+
+  if (ACCOUNTS[email] && ACCOUNTS[email].password === pw) {
+    err.style.display = 'none';
+    currentUser = { email, ...ACCOUNTS[email] };
+
+    if (currentUser.role === 'student') {
+      document.getElementById('studentEmail').textContent = email;
+      document.getElementById('questionEmail').textContent = email;
+      renderCourses();
+      nav('studentDash');
+    } else if (currentUser.role === 'lecturer') {
+      document.getElementById('lecturerEmail').textContent = email;
+      renderLecQuestions();
+      nav('lecturerDash');
+    } else {
+      document.getElementById('adminEmail').textContent = email;
+      renderAdminUsers();
+      renderAdminReports();
+      nav('adminPanel');
+    }
+  } else {
+    err.style.display = 'block';
+  }
+}
+
+function logout() {
+  currentUser = null;
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPassword').value = '';
+  document.getElementById('loginError').style.display = 'none';
+  nav('login');
+}
+
+//Student: Courses
+function renderCourses(filter) {
+  const g = document.getElementById('courseGrid');
+  let list = courses;
+  if (filter) {
+    const f = filter.toLowerCase();
+    list = courses.filter(c => c.name.toLowerCase().includes(f) || c.desc.toLowerCase().includes(f) || c.style.toLowerCase().includes(f));
+  }
+  g.innerHTML = list.length ? list.map(c => `
+    <div class="card card-click" onclick="openCourse(${c.id})">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="card-title">${c.name}</div>
+        <span class="badge badge-outline">${c.credits} CR</span>
+      </div>
+      <div class="card-desc">${c.desc}</div>
+      <div class="card-meta"><span>${c.lecturer}</span><span>·</span><span>${c.style}</span></div>
+    </div>
+  `).join('') : '<div style="text-align:center;padding:40px;color:var(--ink3)">No courses found.</div>';
+}
+
+function filterCourses() {
+  renderCourses(document.getElementById('courseSearch').value);
+}
+
+//Student: Open Course
+function openCourse(id) {
+  currentCourseId = id;
+  const c = courses.find(x => x.id === id);
+  document.getElementById('resourceCourseName').textContent = c.name;
+  document.getElementById('resourceCourseMeta').textContent = c.lecturer + ' · ' + c.credits + ' Credits · ' + c.style;
+
+  // Materials
+  const mats = materials[id] || [];
+  document.getElementById('materialGrid').innerHTML = mats.length ? mats.map(m => `
+    <div class="card card-click">
+      <div class="card-title">${m.title}</div>
+      <div class="card-meta"><span>${m.file}</span><span>${m.date}</span></div>
+    </div>
+  `).join('') : '<div style="padding:20px;color:var(--ink3);font-size:12px">No materials uploaded yet.</div>';
+
+  // Questions
+  const qs = questions.filter(q => q.courseId === id);
+  document.getElementById('courseQuestions').innerHTML = qs.length ? qs.map(q => `
+    <div class="card" style="margin-bottom:8px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div class="card-title">${q.title}</div>
+          <div class="card-meta" style="margin-top:2px">${q.author} · ${q.date}</div>
+        </div>
+        <span class="badge ${q.status==='answered'?'badge-filled':'badge-outline'}">${q.status}</span>
+      </div>
+    </div>
+  `).join('') : '<div style="padding:20px;color:var(--ink3);font-size:12px">No questions yet.</div>';
+
+  // Reset rating
+  document.querySelectorAll('#ratingStars span').forEach(s => s.classList.remove('filled'));
+  document.getElementById('ratingText').textContent = '';
+
+  nav('resourceView');
+}
+
+function bookmarkResource() {
+  showToast('Resource bookmarked');
+}
+
+function rateCourse(n) {
+  document.querySelectorAll('#ratingStars span').forEach((s,i) => {
+    s.classList.toggle('filled', i < n);
+  });
+  document.getElementById('ratingText').textContent = n + '/5';
+  showToast('Rated ' + n + '/5');
+}
+
+//Student: Submit Question
+function submitQuestion() {
+  const title = document.getElementById('qTitle').value.trim();
+  const content = document.getElementById('qContent').value.trim();
+  if (!title) { showToast('Please enter a title'); return; }
+  if (!content) { showToast('Please enter content'); return; }
+  const major = document.getElementById('qMajor').value;
+  questions.push({
+    id: questions.length + 1,
+    title, content, major,
+    courseId: courses.find(c => c.name === major)?.id || 1,
+    date: 'Just now',
+    status: 'pending',
+    author: currentUser.email
+  });
+  document.getElementById('qTitle').value = '';
+  document.getElementById('qContent').value = '';
+  document.getElementById('imgName').textContent = '';
+  openModal('questionSuccessModal');
+}
+
+//Lecturer: Questions
+function renderLecQuestions() {
+  const body = document.getElementById('lecQuestionBody');
+  body.innerHTML = questions.map(q => `
+    <tr>
+      <td><strong>${q.title}</strong></td>
+      <td>${q.major}</td>
+      <td><span class="badge ${q.status==='answered'?'badge-filled':'badge-outline'}">${q.status}</span></td>
+      <td>${q.status==='pending' ? `<button class="btn btn-danger btn-sm" onclick="openAnswer(${q.id})">Answer</button>` : `<button class="btn btn-ghost btn-sm">View</button>`}</td>
+    </tr>
+  `).join('');
+  document.getElementById('pendingCount').textContent = questions.filter(q => q.status === 'pending').length;
+}
+
+function openAnswer(qId) {
+  currentAnswerQId = qId;
+  const q = questions.find(x => x.id === qId);
+  document.getElementById('answerModalQuestion').textContent = '"' + q.title + '" — ' + q.author;
+  document.getElementById('answerText').value = '';
+  openModal('answerModal');
+}
+
+function submitAnswer() {
+  if (!document.getElementById('answerText').value.trim()) { showToast('Please enter an answer'); return; }
+  const q = questions.find(x => x.id === currentAnswerQId);
+  if (q) q.status = 'answered';
+  closeModal('answerModal');
+  renderLecQuestions();
+  showToast('Answer submitted');
+}
+
+//Admin: Users
+function renderAdminUsers() {
+  const body = document.getElementById('adminUserBody');
+  body.innerHTML = users.map((u,i) => `
+    <tr>
+      <td><strong>${u.name}</strong></td>
+      <td>${u.email}</td>
+      <td><span class="badge ${u.role==='Lecturer'?'badge-filled':'badge-outline'}">${u.role}</span></td>
+      <td><span class="badge ${u.status==='active'?'badge-filled':'badge-outline'}">${u.status}</span></td>
+      <td>
+        ${u.status==='pending' ? `<button class="btn btn-danger btn-sm" onclick="approveUser(${i})">Approve</button>` : ''}
+        ${u.status==='active' ? `<button class="btn btn-outline btn-sm" onclick="confirmBan(${i})">Ban</button>` : ''}
+        ${u.status==='banned' ? '<span style="font-size:10px;color:var(--ink3)">BANNED</span>' : ''}
+      </td>
+    </tr>
+  `).join('');
+  document.getElementById('adminPendingCount').textContent = users.filter(u => u.status === 'pending').length;
+}
+
+function approveUser(i) {
+  users[i].status = 'active';
+  renderAdminUsers();
+  showToast(users[i].name + ' approved');
+}
+
+let banTarget = null;
+function confirmBan(i) {
+  banTarget = i;
+  document.getElementById('banModalText').textContent = 'Ban "' + users[i].name + '"? They will lose access.';
+  document.getElementById('banConfirmBtn').onclick = function() {
+    users[banTarget].status = 'banned';
+    closeModal('banModal');
+    renderAdminUsers();
+    showToast(users[banTarget].name + ' has been banned');
+  };
+  openModal('banModal');
+}
+
+//Admin: Reports
+function renderAdminReports() {
+  const body = document.getElementById('adminReportBody');
+  body.innerHTML = reports.map((r,i) => `
+    <tr id="report-${i}">
+      <td><span class="badge badge-outline">${r.type}</span></td>
+      <td><strong>${r.content}</strong></td>
+      <td>${r.reporter}</td>
+      <td><button class="btn btn-danger btn-sm" onclick="confirmDelete(${i})">Remove</button></td>
+    </tr>
+  `).join('');
+  document.getElementById('adminReportCount').textContent = reports.length;
+}
+
+let deleteTarget = null;
+function confirmDelete(i) {
+  deleteTarget = i;
+  document.getElementById('deleteModalText').textContent = 'Remove "' + reports[i].content + '"? This cannot be undone.';
+  document.getElementById('deleteConfirmBtn').onclick = function() {
+    reports.splice(deleteTarget, 1);
+    closeModal('deleteModal');
+    renderAdminReports();
+    showToast('Content removed');
+  };
+  openModal('deleteModal');
+}
+
+//Tabs
+function switchTab(btn, tabId) {
+  const parent = btn.closest('.page') || document.body;
+  parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  parent.querySelectorAll('[id^="tab-"]').forEach(t => {
+    if (t.closest('.page') === btn.closest('.page') || (!t.closest('.page') && !btn.closest('.page'))) {
+      t.style.display = 'none';
+    }
+  });
+  // only toggle tabs within the same page
+  const page = btn.closest('.page');
+  if (page) {
+    page.querySelectorAll('[id^="tab-"]').forEach(t => t.style.display = 'none');
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+}
+
+//Modal
+function openModal(id) { document.getElementById(id).classList.add('show'); }
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('show'); });
+});
+
+//Toast
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+//Enter key login
+document.getElementById('loginPassword').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleLogin();
+});
+document.getElementById('loginEmail').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleLogin();
+});
+</script>
+</body>
+</html>
