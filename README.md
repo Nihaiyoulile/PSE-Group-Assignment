@@ -33,7 +33,7 @@ The system provides a structured platform where:
 
 4. Overview of SDLC Work
 Planning: Gathered requirements, created user stories 
-  and product backlog using Trello (Trello Board: (link))
+  and product backlog using Trello (Trello Board: [(link)](https://trello.com/invite/b/69a924275513cf986f6aed99/ATTI9cc5d5f583bdb701785841d1c0ffde374695C718/quality-education))
 Design: Developed Use Case Diagram, Class Diagram 
   and UI wireframes using Visual Paradigm.
 Development: Built web-based prototype using 
