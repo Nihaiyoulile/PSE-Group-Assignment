@@ -1,4 +1,4 @@
-Product Backlog - (Software Name)
+Product Backlog - Campus Connect
 
 e.g.: ID: user story
 
