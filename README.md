@@ -1,9 +1,9 @@
 # PSE-Group-Assignment
-(Software Name) - Centralized Academic Platform
+Campus Connect - Centralized Academic Platform
 SDG 4: Quality Education
 
 1. Project Title & SDG Chosen
-(Software Name) supports SDG 4 - Quality Education. The platform 
+Campus Connect supports SDG 4 - Quality Education. The platform 
 centralizes academic resources for university students and 
 lecturers, improving organization, accessibility and collaboration 
 in academic learning within the university.
@@ -17,7 +17,7 @@ in academic learning within the university.
 | ZHANG WEIHAO |                        |
 
 3. Project Description
-(Software Name) is a centralized academic platform that helps 
+Campus connect is a centralized academic platform that helps 
 university students and lecturers manage course materials and 
 Q&A in one place. Many students currently use different platforms 
 such as chat groups and external websites to find learning 
@@ -32,11 +32,10 @@ The system provides a structured platform where:
   control and content management
 
 4. Overview of SDLC Work
-- Planning: Gathered requirements, created user stories 
+Planning: Gathered requirements, created user stories 
   and product backlog using Trello (Trello Board: (link))
-- Design: Developed Use Case Diagram, Class Diagram 
-  and UI wireframes using (UML Tool Name)
-- Development: Built (web-based / mobile) prototype using 
-  (Technology Used) focusing on core features
-- Testing: Conducted usability testing and collected user 
-  feedback to improve the prototype
+Design: Developed Use Case Diagram, Class Diagram 
+  and UI wireframes using Visual Paradigm.
+Development: Built web-based prototype using 
+HTML, CSS and JavaScript focusing on core features.
+Testing: Conducted usability testing and collected user feedback to improve the prototype
