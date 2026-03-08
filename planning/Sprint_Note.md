@@ -40,3 +40,21 @@ This week's task allocation was improper, the workload was too large, and the co
 
 5. Plan for Next Sprint (Sprint 3)
 Core tasks: Improve the Software based on the feedback and start writing the Complete Assignment Report.
+
+Sprint 3: Improve the software & complete the report (Mar 1-Mar 7)
+
+1. Sprint Goal: This week's core goal is to adjust the software according to last week’s test results and then complete the report.
+
+2. Completed Tasks (Done):
+(1)Improve the software
+(2)Write the error report
+(3)Write the group assignment report
+
+3. Challenges & Blockers
+This week, everyone cooperated tacitly, and the progress was completed smoothly.
+
+4. Sprint Review & Improvements
+Everyone has performed well this week, and we hope to continue next week.
+
+5. Plan for Next Sprint (Sprint 4)
+Core tasks: Prepare the presentation, then, pepare to rehearse. Finally,Submit the group assignment through the link.
