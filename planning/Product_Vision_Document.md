@@ -1,5 +1,5 @@
 Introduction:
-Project Title: (software name)
+Project Title: Campus Connect
 Target Audience:Students,Lecturers and Admin.
 
 Problem Statement:
@@ -20,5 +20,5 @@ and promoting academic collaboration and discussions.
 
 Key Features:
 Student Module: Search Courses, View Resources, Upload Questions, Bookmark Resources and Report Content
-Lecturer Module: Upload Courses, Upload Teaching Material, Answer Questions and Upload Picture
+Lecturer Module: Upload Courses, Upload Teaching Material and Answer Questions
 Administrator Module: Log in, Manage Users, Approve Lecture, Remove Content and Approve Courses
