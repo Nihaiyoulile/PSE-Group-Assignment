@@ -10,7 +10,7 @@ This leads to information confusion, and important discussions and documents are
 
 Core Vision:
 Built a seamless academic platform so that every teacher and student can have equal access to high-quality educational resources anytime and anywhere. There are 3 key goals.
-First, improve the accessibility of resources. Secondly, promote the interaction and feedback between teachers and students. Finally, simplify the resource management process.
+First, improve the accessibility of resources. Secondly, promote the interaction and feedback between teachers and students. Finally, simplify the resource management process. For example, in addition to regular academic materials, students can also find different materials through different materials yhrough different styles. Such as academic style and casual style.
 
 SDG choice:
 This project supports SDG 4-Quality Education.
