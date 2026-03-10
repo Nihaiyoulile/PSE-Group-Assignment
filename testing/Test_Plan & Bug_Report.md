@@ -34,3 +34,21 @@ IV. Test Case
 | TC10    | Administrator| Approve & block accounts | Login to Administrator’s account, then click Approve or Ban                                 | The account status has been updated to active or banned |
 | TC11    | Administrator| Content Moderation     | Click Content Moderation, then click Remove                                                  | Content removed successfully                        |
 | TC12    | Administrator| Course Approval        | Click Course Approval, and then click Approve or Reject                                      | Fail, this part is missing                          |
+
+V.Test Summary
+1.Test result
+The total number of test cases: 12
+Pass: 10
+Fail: 2
+
+2.Problems found
+| Question number | Describe | Severity |
+|----------------|----------|----------|
+| Bug-01 | The course lacks description of the teaching style. | Medium |
+| Bug-02 | Lack of the function of approving courses | High |
+
+3.Improvement measures
+Bug01: The marking of different teaching materials in the course belongs to academic style or casual style. In this way, it is convenient for students to choose quickly according to their own needs.
+
+Bug02: Immediately add the function that the administrator can approve or reject the course. In order to be consistent with the UML diagram.
+
