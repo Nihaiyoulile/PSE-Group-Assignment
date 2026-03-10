@@ -20,3 +20,17 @@ III.Test Environment
 
 
 IV. Test Case
+| Num ber | Test module  | Function               | Test steps                                                                                     | Result                                              |
+|---------|--------------|------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| TC01    | Login        | Account login          | Input student, lecturer and administrator account & password, then click Login               | Successfully logged                                 |
+| TC02    | Login        | Wrong password to log in | Enter the email address, and then enter the wrong password                                   | Display the error prompt letter                     |
+| TC03    | Student      | Search for courses     | Log in as a Student, then enter the keywords in the search bar, and finally click Search     | Successfully display courses related to keywords    |
+| TC04    | Student      | Check the course materials | Log in as a Student, and then click any course                                               | Successfully display materials                      |
+| TC05    | Student      | Bookmark               | Enter any course and then click Bookmark                                                     | Success                                             |
+| TC06    | Student      | Submit questions       | Click Ask a Question to fill in the content, then click Submit                               | The question was submitted successfully             |
+| TC07    | Student      | Choose the course style | Enter any course and choose academic style or casual style                                   | Fail, lack of style                                 |
+| TC08    | Lecturer     | Upload materials       | Log in to teacher’s account and select the course, then upload materials                     | Uploaded successfully                               |
+| TC09    | Lecturer     | Check the students’ questions | Click QUESTIONS to view and answer questions                                              | The status of the problem change to Answered        |
+| TC10    | Administrator| Approve & block accounts | Login to Administrator’s account, then click Approve or Ban                                 | The account status has been updated to active or banned |
+| TC11    | Administrator| Content Moderation     | Click Content Moderation, then click Remove                                                  | Content removed successfully                        |
+| TC12    | Administrator| Course Approval        | Click Course Approval, and then click Approve or Reject                                      | Fail, this part is missing                          |
