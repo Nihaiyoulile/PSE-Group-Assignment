@@ -58,3 +58,18 @@ Everyone has performed well this week, and we hope to continue next week.
 
 5. Plan for Next Sprint (Sprint 4)
 Core tasks: Prepare the presentation, then, pepare to rehearse. Finally,Submit the group assignment through the link.
+
+Sprint 4:Prepare the presentation and final submission (Mar 8-Mar 13)
+
+1. Sprint Goal: Make slides, prepare presentations and submit assignments through links.
+
+2.Completet Tasks (Done):
+(1)Make slides
+(2)Prepare for presentation and rehearsal
+(3)Submit group assignment
+
+3. Challenges & Blockers
+This week’s task was completed well and no challenges were encountered.
+
+5. Sprint Review & Improvements
+This group assignment was successfully completed. In general, everyone’s coordination, and it also exercised our communication and coordination skills, and we were also more considerate of others.
