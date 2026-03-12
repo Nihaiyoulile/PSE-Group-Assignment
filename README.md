@@ -9,15 +9,16 @@ lecturers, improving organization, accessibility and collaboration
 in academic learning within the university.
 
 2. Team Members
-|     Name     |          Role          |
-|--------------|------------------------|
-| ZHANG WENBO(Group leader)  | Test prototype, Complete Group Assignment Report, Make Slides|
-| Hassan Mehdi |Draw UML Diagram, Complete Group Assignment Report|
-| ZHANG HAORAN |Complete Planning and Final part, Test prototype, Manage the GitHub Repository and Trello|
-| ZHANG HAOYAN |Complete Planning part, Draw UML Diagram, Test prototype|
-| ZHANG WEIHAO |Draw UML Diagram, Draw UI Wireframe, Complete the software prototype through figma|
 
-4. Project Description
+| Name | Role |
+|------|------|
+| ZHANG WENBO (Group leader) | Test prototype, Complete Group Assignment Report, Make Slides |
+| Hassan Mehdi | Draw UML Diagram, Complete Group Assignment Report |
+| ZHANG HAORAN | Complete Planning and Final part, Test prototype, Manage the GitHub Repository and Trello |
+| ZHANG HAOYAN | Complete Planning part, Draw UML Diagram, Test prototype |
+| ZHANG WEIHAO | Draw UML Diagram, Draw UI Wireframe, Complete the software prototype through Figma |
+
+3. Project Description
 Campus connect is a centralized academic platform that helps 
 university students and lecturers manage course materials and 
 Q&A in one place. Many students currently use different platforms 
