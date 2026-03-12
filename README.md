@@ -11,11 +11,11 @@ in academic learning within the university.
 2. Team Members
 |     Name     |          Role          |
 |--------------|------------------------|
-| ZHANG WENBO  | Group Leader           |
-| Hassan Mehdi |                        |
-| ZHANG HAORAN |                        |
-| ZHANG HAOYAN |                        |
-| ZHANG WEIHAO |                        |
+| ZHANG WENBO(Group leader)  | Test prototype, Complete Group Assignment Report, Make Slides|
+| Hassan Mehdi |Draw UML Diagram, Complete Group Assignment Report|
+| ZHANG HAORAN |Complete Planning and Final part, Test prototype, Manage the GitHub Repository and Trello|
+| ZHANG HAOYAN |Complete Planning part, Draw UML Diagram, Test prototype|
+| ZHANG WEIHAO |Draw UML Diagram, Draw UI Wireframe, Complete the software prototype through figma|
 
 4. Project Description
 Campus connect is a centralized academic platform that helps 
