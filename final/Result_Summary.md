@@ -28,22 +28,3 @@ V.Summary
 
 The overall completion of the software is relatively high, achieving the original goal of Product Vision.It is for campus teaching scenarios, which is used to integrate course materials, learn questions and answers and role-based management functions.This supports more efficient teaching and learning interaction, and at the same time echoes the target requirements of SDG4 for high-quality education.
 
-VI.Screenshot Demonstration
-
-1. Login ![Login](final/Screenshot_Login.png)
-
-2. Student Dashboard ![StudentDashboard](final/Screenshot_StudentDashboard.png)
-
-3. Cpurse View ![CourseView](final/Screenshot_CourseView.png)
-
-4. Student Submit Questions ![SubmitQuestions](final/Screenshot_SubmitQuestions.png)
-
-5. Lecturer Dashboards ![LecturerDashboard](final/Screenshot_LecturerDashboard.png)
-
-6. Lecturer Answer Questions ![AnswerQuestions](final/Screenshot_AnswerQuestions.png)
-
-7. Admin Panel ![AdminPanel](final/Screenshot_AdminPanel.png)
-
-8. Content Moderation ![ContentModeration](final/Screenshot_ContentModeration.png)
-
-9. Course Approval ![CourseApproval](final/Screenshot_CourseApproval.png)
