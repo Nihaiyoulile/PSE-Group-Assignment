@@ -10,13 +10,14 @@ in academic learning within the university.
 
 2. Team Members
 |     Name     |          Role          |
+|--------------|------------------------|
 | ZHANG WENBO  | Group Leader           |
 | Hassan Mehdi |                        |
-| Zhang Haoran |                        |
-| Zhang Haoyan |                        |
+| ZHANG HAORAN |                        |
+| ZHANG HAOYAN |                        |
 | ZHANG WEIHAO |                        |
 
-3. Project Description
+4. Project Description
 Campus connect is a centralized academic platform that helps 
 university students and lecturers manage course materials and 
 Q&A in one place. Many students currently use different platforms 
@@ -36,6 +37,5 @@ Planning: Gathered requirements, created user stories
   and product backlog using Trello (Trello Board: [(link)](https://trello.com/invite/b/69a924275513cf986f6aed99/ATTI9cc5d5f583bdb701785841d1c0ffde374695C718/quality-education))
 Design: Developed Use Case Diagram, Class Diagram 
   and UI wireframes using Visual Paradigm.
-Development: Built web-based prototype using 
-HTML, CSS and JavaScript focusing on core features.
+Development: Built web-based prototype using Figma focusing on core features.
 Testing: Conducted usability testing and collected user feedback to improve the prototype
