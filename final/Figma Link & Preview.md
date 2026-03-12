@@ -2,20 +2,20 @@ Figma Link:https://www.figma.com/proto/FAVmZlZoVXBGGFhZ8gjTG1/Untitled?node-id=3
 
 Screenshot Demonstration
 
-1. Login ![Login](final/Screenshot_Login.jpg)
+1. Login ![Login](Screenshot_Login.jpg)
 
-2. Student Dashboard ![StudentDashboard](final/Screenshot_StudentDashboard.jpg)
+2. Student Dashboard ![StudentDashboard](Screenshot_StudentDashboard.jpg)
 
-3. Cpurse View ![CourseView](final/Screenshot_CourseView.jpg)
+3. Course View ![CourseView](Screenshot_CourseView.jpg)
 
-4. Student Submit Questions ![SubmitQuestions](final/Screenshot_SubmitQuestions.jpg)
+4. Student Submit Questions ![SubmitQuestions](Screenshot_SubmitQuestions.jpg)
 
-5. Lecturer Dashboards ![LecturerDashboard](final/Screenshot_LecturerDashboard.jpg)
+5. Lecturer Dashboards ![LecturerDashboard](Screenshot_LecturerDashboard.jpg)
 
-6. Lecturer Answer Questions ![AnswerQuestions](final/Screenshot_AnswerQuestions.jpg)
+6. Lecturer Answer Questions ![AnswerQuestions](Screenshot_AnswerQuestions.jpg)
 
-7. Admin Panel ![AdminPanel](final/Screenshot_AdminPanel.jpg)
+7. Admin Panel ![AdminPanel](Screenshot_AdminPanel.jpg)
 
-8. Content Moderation ![ContentModeration](final/Screenshot_ContentModeration.jpg)
+8. Content Moderation ![ContentModeration](Screenshot_ContentModeration.jpg)
 
-9. Course Approval ![CourseApproval](final/Screenshot_CourseApproval.jpg)
+9. Course Approval ![CourseApproval](Screenshot_CourseApproval.jpg)
